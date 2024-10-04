@@ -7,7 +7,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="your-favicon.ico" type="image/x-icon">
     <style>
-        /* تحديث الخلفية لتكون متحركة */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --section-bg: rgba(255, 255, 255, 0.1);
+            --nav-bg: rgba(0, 0, 0, 0.7);
+        }
+
+        .dark-mode {
+            --bg-color: #333333;
+            --text-color: #ffffff;
+            --section-bg: rgba(0, 0, 0, 0.3);
+            --nav-bg: rgba(255, 255, 255, 0.1);
+        }
+
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -19,16 +32,16 @@
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            color: #fff;
+            color: var(--text-color);
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* تحسين شريط التنقل */
         nav {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: var(--nav-bg);
             backdrop-filter: blur(10px);
             padding: 15px 20px;
             position: fixed;
@@ -58,7 +71,7 @@
         }
 
         nav ul li a {
-            color: white;
+            color: var(--text-color);
             text-decoration: none;
             font-size: 1.1em;
             transition: all 0.3s ease;
@@ -72,7 +85,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: #fff;
+            background-color: var(--text-color);
             transition: width 0.3s ease;
         }
 
@@ -80,7 +93,6 @@
             width: 100%;
         }
 
-        /* تحسين رأس الصفحة */
         header {
             text-align: center;
             padding: 150px 20px 100px;
@@ -104,14 +116,14 @@
         }
 
         .logo {
-            border: 3px solid white;
+            border: 3px solid var(--text-color);
             border-radius: 50%;
             animation: float 3s ease-in-out infinite;
         }
 
         .profile-pic {
             border-radius: 50%;
-            border: 5px solid white;
+            border: 5px solid var(--text-color);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
@@ -137,9 +149,8 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        /* تحسين الأقسام */
         section {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: var(--section-bg);
             margin: 40px auto;
             padding: 30px;
             border-radius: 15px;
@@ -159,7 +170,7 @@
         h2 {
             font-size: 2em;
             margin-bottom: 20px;
-            color: #fff;
+            color: var(--text-color);
             position: relative;
             padding-bottom: 10px;
         }
@@ -168,7 +179,7 @@
             content: '';
             width: 50px;
             height: 3px;
-            background-color: #fff;
+            background-color: var(--text-color);
             position: absolute;
             left: 0;
             bottom: 0;
@@ -194,7 +205,6 @@
             transform: translateX(10px);
         }
 
-        /* تحسين روابط التواصل الاجتماعي */
         .social-media ul {
             display: flex;
             justify-content: center;
@@ -207,7 +217,7 @@
         }
 
         .social-media a {
-            color: #fff;
+            color: var(--text-color);
             text-decoration: none;
             font-size: 2.5em;
             transition: all 0.3s ease;
@@ -219,16 +229,37 @@
             transform: scale(1.2) rotate(360deg);
         }
 
-        /* تحسين التذييل */
         footer {
             text-align: center;
             padding: 30px;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
+            background-color: var(--nav-bg);
+            color: var(--text-color);
             margin-top: 40px;
         }
 
-        /* تحسينات للتصميم المتجاوب */
+        .toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .toggle-btn {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            opacity: 0.8;
+        }
+
         @media (max-width: 768px) {
             nav ul {
                 flex-direction: column;
@@ -250,6 +281,11 @@
             section {
                 margin: 20px 10px;
                 padding: 20px;
+            }
+
+            .toggle-container {
+                top: 10px;
+                right: 10px;
             }
         }
 
@@ -274,12 +310,17 @@
     </style>
 </head>
 <body>
+    <div class="toggle-container">
+        <button id="darkModeToggle" class="toggle-btn">🌙</button>
+        <button id="languageToggle" class="toggle-btn">EN</button>
+    </div>
+
     <nav>
         <ul>
-            <li><a href="#info">Personal Info</a></li>
-            <li><a href="#certificates">Certificates</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#social-media">Social Media</a></li>
+            <li><a href="#info" data-en="Personal Info" data-ar="المعلومات الشخصية">Personal Info</a></li>
+            <li><a href="#certificates" data-en="Certificates" data-ar="الشهادات">Certificates</a></li>
+            <li><a href="#education" data-en="Education" data-ar="التعليم">Education</a></li>
+            <li><a href="#social-media" data-en="Social Media" data-ar="وسائل التواصل الاجتماعي">Social Media</a></li>
         </ul>
     </nav>
 
@@ -288,35 +329,36 @@
             <img src="your-logo.png" alt="Logo" class="logo">
             <img src="your-photo.jpg" alt="Profile Picture" class="profile-pic">
         </div>
-        <h1>Mostafa Emad Salah Hamdy</h1>
-        <p>Passionate about Programming and Gaming</p>
+        <h1 data-en="Mostafa Emad Salah Hamdy" data-ar="مصطفى عماد صلاح حمدي">Mostafa Emad Salah Hamdy</h1>
+        <p data-en="Passionate about Programming and Gaming" data-ar="شغوف بالبرمجة والألعاب">Passionate about Programming and Gaming</p>
     </header>
 
     <section id="info">
-        <h2>Personal Information</h2>
-        <p><strong>Age:</strong> <span id="age"></span></p>
-        <p><strong>Email:</strong> <a href="mailto:mostafaemad2005@gmail.com">mostafaemad2005@gmail.com</a></p>
+        <h2 data-en="Personal Information" data-ar="المعلومات الشخصية">Personal Information</h2>
+        <p><strong data-en="Age" data-ar="العمر">Age:</strong> <span id="age"></span></p>
+             <p><strong data-en="Nationality" data-ar="البلد">Nationality:</strong> <a href="mailto:" data-en="Egyptian" data-ar="مصر">Egyptian</a></p>
+        <p><strong data-en="Email" data-ar="البريد الإلكتروني">Email:</strong> <a href="mailto:mommm2005@gmail.com">mommm2005@gmail.com</a></p>
     </section>
 
     <section id="certificates">
-        <h2>Qualifications and Certificates</h2>
+        <h2 data-en="Qualifications and Certificates" data-ar="المؤهلات والشهادات">Qualifications and Certificates</h2>
         <ul>
-            <li>Digital Marketing: Misr University for Science and Technology (MUST), 2024</li>
-            <li>ISO 45001/2018: Occupational Safety and Health Management System</li>
-            <li>Data Science: Completion Certificate from Moka Satar</li>
-            <li>Python 101: Completion Certificate from Moka Satar</li>
-            <li>Body Language & Business Etiquette: Almentor platform</li>
-            <li>Attendance Certificate at Third International Biotechnology Conference, Mast University</li>
+            <li data-en="Digital Marketing: Misr University for Science and Technology (MUST), 2024" data-ar="التسويق الرقمي: جامعة مصر للعلوم والتكنولوجيا (MUST)، 2024">Digital Marketing: Misr University for Science and Technology (MUST), 2024</li>
+            <li data-en="ISO 45001/2018: Occupational Safety and Health Management System" data-ar="ISO 45001/2018: نظام إدارة السلامة والصحة المهنية">ISO 45001/2018: Occupational Safety and Health Management System</li>
+            <li data-en="Data Science: Completion Certificate from Moka Satar" data-ar="علوم البيانات: شهادة إتمام من موكا ستار">Data Science: Completion Certificate from Moka Satar</li>
+            <li data-en="Python 101: Completion Certificate from Moka Satar" data-ar="بايثون 101: شهادة إتمام من موكا ستار">Python 101: Completion Certificate from Moka Satar</li>
+            <li data-en="Body Language & Business Etiquette: Almentor platform" data-ar="لغة الجسد وآداب العمل: منصة المنتور">Body Language & Business Etiquette: Almentor platform</li>
+            <li data-en="Attendance Certificate at Third International Biotechnology Conference, Mast University" data-ar="شهادة حضور المؤتمر الدولي الثالث للتكنولوجيا الحيوية، جامعة ماست">Attendance Certificate at Third International Biotechnology Conference, Mast University</li>
         </ul>
     </section>
 
     <section id="education">
-        <h2>Education</h2>
-        <p>Faculty of Health Sciences - Health Administration&Informat</p>
+        <h2 data-en="Education" data-ar="التعليم">Education</h2>
+        <p data-en="Faculty of Health Sciences - Health Administration&Informat" data-ar="كلية العلوم الصحية - إدارة الصحة والمعلوماتية">Faculty of Health Sciences - Health Administration&Informat</p>
     </section>
 
     <section id="social-media" class="social-media">
-        <h2>Social Media</h2>
+        <h2 data-en="Social Media" data-ar="وسائل التواصل الاجتماعي">Social Media</h2>
         <ul>
             <li><a href="https://www.facebook.com/mommm93205" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
             <li><a href="https://discord.com/users/705851962851196962" target="_blank"><i class="fab fa-discord"></i></a></li>
@@ -328,7 +370,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 Mostafa Emad Salah Hamdy. All rights reserved.</p>
+        <p data-en="© 2024 Mostafa Emad Salah Hamdy. All rights reserved." data-ar="© 2024 مصطفى عماد صلاح حمدي. جميع الحقوق محفوظة.">© 2024 Mostafa Emad Salah Hamdy. All rights reserved.</p>
     </footer>
 
     <script>
@@ -368,7 +410,6 @@
                 });
             });
 
-            // إضافة تأثير النقر على روابط التنقل
             document.querySelectorAll('nav a').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -379,6 +420,25 @@
                         behavior: 'smooth'
                     });
                 });
+            });
+
+            // Dark mode toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            darkModeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            });
+
+            // Language toggle
+            const languageToggle = document.getElementById('languageToggle');
+            let isEnglish = true;
+            languageToggle.addEventListener('click', () => {
+                isEnglish = !isEnglish;
+                languageToggle.textContent = isEnglish ? 'EN' : 'عربي';
+                document.querySelectorAll('[data-en][data-ar]').forEach(el => {
+                    el.textContent = isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-ar');
+                });
+                document.dir = isEnglish ? 'ltr' : 'rtl';
             });
         });
     </script>
