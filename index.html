@@ -345,8 +345,8 @@
         <ul>
             <li data-en="Digital Marketing: Misr University for Science and Technology (MUST), 2024" data-ar="التسويق الرقمي: جامعة مصر للعلوم والتكنولوجيا (MUST)، 2024">Digital Marketing: Misr University for Science and Technology (MUST), 2024</li>
             <li data-en="ISO 45001/2018: Occupational Safety and Health Management System" data-ar="ISO 45001/2018: نظام إدارة السلامة والصحة المهنية">ISO 45001/2018: Occupational Safety and Health Management System</li>
-            <li data-en="Data Science: Completion Certificate from Moka Satar" data-ar="علوم البيانات: شهادة إتمام من موكا ستار">Data Science: Completion Certificate from Moka Satar</li>
-            <li data-en="Python 101: Completion Certificate from Moka Satar" data-ar="بايثون 101: شهادة إتمام من موكا ستار">Python 101: Completion Certificate from Moka Satar</li>
+            <li data-en="Data Science: Completion Certificate from Moka Satar" data-ar="علوم البيانات: شهادة إتمام من موكا سطر">Data Science: Completion Certificate from Moka Satar</li>
+            <li data-en="Python 101: Completion Certificate from Moka Satar" data-ar="بايثون 101: شهادة إتمام من موكا سطر">Python 101: Completion Certificate from Moka Satar</li>
             <li data-en="Body Language & Business Etiquette: Almentor platform" data-ar="لغة الجسد وآداب العمل: منصة المنتور">Body Language & Business Etiquette: Almentor platform</li>
             <li data-en="Attendance Certificate at Third International Biotechnology Conference, Mast University" data-ar="شهادة حضور المؤتمر الدولي الثالث للتكنولوجيا الحيوية، جامعة ماست">Attendance Certificate at Third International Biotechnology Conference, Mast University</li>
         </ul>
@@ -365,7 +365,34 @@
             <li><a href="https://www.instagram.com/lahn_alhout/" target="_blank"><i class="fab fa-instagram"></i></a></li>
             <li><a href="https://www.linkedin.com/in/mostafaelhout/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
             <li><a href="https://kick.com/dr-wable" target="_blank"><i class="fab fa-kickstarter"></i></a></li>
-            <li><a href="https://www.youtube.com/@elhoutGaming" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                  
+             <li><a href="https://www.youtube.com/@elhoutGaming" target="_blank"><i class="fab fa-youtube"></i></a></li>
+        <li id="youtube-subscribers">Subscribers: Loading...</li>
+    </ul>
+</section>
+
+<script>
+    async function fetchYouTubeSubscribers() {
+       const apiKey = 'AIzaSyDz4iCQ9Ua1xW64sKI5HEcvI7314GRStEw';  // أدخل مفتاح API الخاص بك هنا
+        const channelId = 'UCsIcVdCwiZ0dr2Hm2Ua_6PA';  // مثال على معرف قناة Google Developers
+
+        try {
+            const response = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`);
+            const data = await response.json();
+
+            if (data.items && data.items.length > 0) {
+                const subscribers = data.items[0].statistics.subscriberCount;
+                document.getElementById('youtube-subscribers').textContent = `Subscribers: ${subscribers}`;
+            } else {
+                console.error('Channel not found');
+            }
+        } catch (error) {
+            console.error('Error fetching YouTube data:', error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchYouTubeSubscribers);
+</script>
         </ul>
     </section>
 
