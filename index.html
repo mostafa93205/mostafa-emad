@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostafa Emad Salah Hamdy - Personal Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="your-favicon.ico" type="image/x-icon"> <!-- إضافة favicon هنا -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a0a0a; /* Dark background for a techy feel */
+            color: #eee;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 80px 20px 20px;
+            background: url('background-tech.gif') no-repeat center center fixed; /* Tech-themed background with animation */
+            background-size: cover;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .logo, .profile-pic {
+            width: 120px;
+            height: 120px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo {
+            border: 3px solid white;
+            border-radius: 50%;
+        }
+
+        .profile-pic {
+            border-radius: 50%;
+            border: 5px solid white;
+        }
+
+        .header-container:hover .logo,
+        .header-container:hover .profile-pic {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); /* Neon glow effect */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            animation: fadeInDown 1s ease-out;
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        /* Sections */
+        section {
+            background-color: #1f1f1f; /* Dark background for sections */
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        section.show {
+            opacity: 1;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #eee;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            width: 50px;
+            height: 2px;
+            background-color: #3498db;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        /* Social Links */
+        .social-media ul {
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .social-media li {
+            margin: 0 15px;
+        }
+
+        .social-media a {
+            color: #eee;
+            text-decoration: none;
+            font-size: 2em;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-media a:hover {
+            color: #3498db;
+            transform: scale(1.2); /* Slight zoom effect */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 10px; /* Reduced gap for smaller screens */
+            }
+
+            .logo, .profile-pic {
+                width: 100px;
+                height: 100px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            section {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            ul li {
+                font-size: 1em;
+            }
+
+            .social-media a {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            .logo, .profile-pic {
+                width: 80px;
+                height: 80px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            p {
+                font-size: 0.9em;
+            }
+
+            section {
+                margin: 5px;
+                padding: 10px;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            ul li {
+                font-size: 0.9em;
+            }
+
+            .social-media a {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#info">Personal Info</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#social-media">Social Media</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="header-container">
+            <!-- Logo and Profile Picture -->
+            <img src="your-logo.png" alt="Logo" class="logo">
+            <img src="your-photo.jpg" alt="Profile Picture" class="profile-pic">
+        </div>
+        <h1>Mostafa Emad Salah Hamdy</h1>
+        <p>Passionate about Programming and Gaming</p>
+    </header>
+
+    <section id="info">
+        <h2>Personal Information</h2>
+        <p><strong>Age:</strong> <span id="age"></span></p>
+        <p><strong>Email:</strong> <a href="mailto:mommm93205@gmail.com">mommm93205@gmail.com</a></p>
+    </section>
+
+<section id="certificates">
+    <h2>Qualifications and Certificates</h2>
+    <ul>
+        <li>Digital Marketing: Misr University for Science and Technology (MUST), 2024</li>
+        <li>ISO 45001/2018: Occupational Safety and Health Management System</li>
+        <li>Data Science: Completion Certificate from Moka Satar</li>
+        <li>Python 101: Completion Certificate from Moka Satar</li>
+        <li>Body Language & Business Etiquette: Almentor platform</li>
+        <li>Attendance Certificate at Third International Biotechnology Conference, Mast University</li>
+    </ul>
+</section>
+
+
+    <section id="education">
+        <h2>Education</h2>
+        <p>Faculty of Health Sciences - Health Administration&Informat</p>
+    </section>
+
+    <section id="social-media" class="social-media">
+        <h2>Social Media</h2>
+        <ul>
+            <li><a href="https://www.facebook.com/mommm93205" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://discord.com/users/705851962851196962" target="_blank"><i class="fab fa-discord"></i></a></li>
+            <li><a href="https://www.instagram.com/lahn_alhout/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/mostafaelhout/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a href="https://kick.com/dr-wable" target="_blank"><i class="fab fa-kickstarter"></i></a></li>
+            <li><a href="https://www.youtube.com/@elhoutGaming" target="_blank"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mostafa Emad Salah Hamdy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to calculate age
+            function calculateAge(dateOfBirth) {
+                const today = new Date();
+                const birthDate = new Date(dateOfBirth);
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDifference = today.getMonth() - birthDate.getMonth();
+                if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
+            }
+
+            // Set date of birth
+            const dateOfBirth = '2005-03-09'; // Change this to the correct birthdate
+            document.getElementById('age').textContent = calculateAge(dateOfBirth);
+
+            const sections = document.querySelectorAll('section');
+            window.addEventListener('scroll', () => {
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const viewportHeight = window.innerHeight;
+                    if (sectionTop < viewportHeight * 0.8) {
+                        section.classList.add('show');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
