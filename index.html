@@ -4,152 +4,382 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mostafa Emad Salah Hamdy - Personal Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="your-favicon.ico" type="image/x-icon">
     <style>
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* تحديث الخلفية لتكون متحركة */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
-        .bg-gradient {
-            background: linear-gradient(to bottom right, #1a202c, #000000);
+
+        /* تحسين شريط التنقل */
+        nav {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
-        .bg-overlay {
-            background: linear-gradient(to right, rgba(76, 29, 149, 0.5), rgba(67, 56, 202, 0.5));
+
+        nav.scrolled {
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.9);
         }
-        .text-shadow {
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #fff;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* تحسين رأس الصفحة */
+        header {
+            text-align: center;
+            padding: 150px 20px 100px;
+            background: rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .logo, .profile-pic {
+            width: 150px;
+            height: 150px;
+            transition: all 0.5s ease;
+        }
+
+        .logo {
+            border: 3px solid white;
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .profile-pic {
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .header-container:hover .logo {
+            transform: rotate(360deg);
+        }
+
+        .header-container:hover .profile-pic {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+        }
+
+        h1 {
+            font-size: 3em;
+            animation: fadeInDown 1s ease-out;
+            margin: 0;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        .hover-scale:hover {
-            transform: scale(1.1);
+
+        /* تحسين الأقسام */
+        section {
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: #fff;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        section:hover h2::after {
+            width: 100px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            font-size: 1.2em;
+            margin: 15px 0;
             transition: transform 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: translateX(10px);
+        }
+
+        /* تحسين روابط التواصل الاجتماعي */
+        .social-media ul {
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .social-media li {
+            margin: 0 20px;
+        }
+
+        .social-media a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 2.5em;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-media a:hover {
+            color: #23a6d5;
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        /* تحسين التذييل */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            margin-top: 40px;
+        }
+
+        /* تحسينات للتصميم المتجاوب */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .header-container {
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            section {
+                margin: 20px 10px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo, .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            .social-media a {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient text-white">
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-opacity-70 bg-gray-800 backdrop-filter backdrop-blur-md">
-        <ul class="flex justify-center space-x-6 p-4">
-            <li><a href="#info" class="hover:text-cyan-400 transition-colors">Info</a></li>
-            <li><a href="#certificates" class="hover:text-cyan-400 transition-colors">Certificates</a></li>
-            <li><a href="#education" class="hover:text-cyan-400 transition-colors">Education</a></li>
-            <li><a href="#social-media" class="hover:text-cyan-400 transition-colors">Social</a></li>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#info">Personal Info</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#social-media">Social Media</a></li>
         </ul>
     </nav>
 
-    <header class="pt-20 pb-10 text-center relative overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-overlay"></div>
-            <div class="absolute inset-0 bg-cover bg-center mix-blend-overlay" style="background-image: url('/placeholder.svg?height=400&width=800');"></div>
+    <header>
+        <div class="header-container">
+            <img src="your-logo.png" alt="Logo" class="logo">
+            <img src="your-photo.jpg" alt="Profile Picture" class="profile-pic">
         </div>
-        <div class="relative z-10 animate-fade-in">
-            <img src="/placeholder.svg?height=150&width=150" alt="Profile" class="w-32 h-32 rounded-full border-4 border-cyan-400 mx-auto mb-4 shadow-lg shadow-cyan-400/50">
-            <h1 class="text-4xl font-bold mb-2 text-shadow">Mostafa Emad Salah Hamdy</h1>
-            <p class="text-xl text-cyan-300">Passionate about Programming and Gaming</p>
-        </div>
+        <h1>Mostafa Emad Salah Hamdy</h1>
+        <p>Passionate about Programming and Gaming</p>
     </header>
 
-    <main class="container mx-auto px-4 space-y-12">
-        <section id="info" class="bg-gray-800 rounded-lg p-6 shadow-xl animate-fade-in">
-            <h2 class="text-2xl font-semibold mb-4 text-cyan-400">Personal Information</h2>
-            <p class="text-lg"><strong>Age:</strong> <span id="age"></span></p>
-            <p class="text-lg"><strong>Email:</strong> <a href="mailto:mommm93205@gmail.com" class="text-cyan-300 hover:underline">mommm93205@gmail.com</a></p>
-        </section>
+    <section id="info">
+        <h2>Personal Information</h2>
+        <p><strong>Age:</strong> <span id="age"></span></p>
+        <p><strong>Email:</strong> <a href="mailto:mostafaemad2005@gmail.com">mostafaemad2005@gmail.com</a></p>
+    </section>
 
-        <section id="certificates" class="bg-gray-800 rounded-lg p-6 shadow-xl animate-fade-in">
-            <h2 class="text-2xl font-semibold mb-4 text-cyan-400">Qualifications and Certificates</h2>
-            <ul class="list-disc list-inside space-y-2">
-                <li>Digital Marketing: Misr University for Science and Technology (MUST), 2024</li>
-                <li>ISO 45001/2018: Occupational Safety and Health Management System</li>
-                <li>Data Science: Completion Certificate from Moka Satar</li>
-                <li>Python 101: Completion Certificate from Moka Satar</li>
-                <li>Body Language & Business Etiquette: Almentor platform</li>
-                <li>Attendance Certificate at Third International Biotechnology Conference, Mast University</li>
-            </ul>
-        </section>
+    <section id="certificates">
+        <h2>Qualifications and Certificates</h2>
+        <ul>
+            <li>Digital Marketing: Misr University for Science and Technology (MUST), 2024</li>
+            <li>ISO 45001/2018: Occupational Safety and Health Management System</li>
+            <li>Data Science: Completion Certificate from Moka Satar</li>
+            <li>Python 101: Completion Certificate from Moka Satar</li>
+            <li>Body Language & Business Etiquette: Almentor platform</li>
+            <li>Attendance Certificate at Third International Biotechnology Conference, Mast University</li>
+        </ul>
+    </section>
 
-        <section id="education" class="bg-gray-800 rounded-lg p-6 shadow-xl animate-fade-in">
-            <h2 class="text-2xl font-semibold mb-4 text-cyan-400">Education</h2>
-            <p class="text-lg">Faculty of Health Sciences - Health Administration & Informatics</p>
-        </section>
+    <section id="education">
+        <h2>Education</h2>
+        <p>Faculty of Health Sciences - Health Administration&Informat</p>
+    </section>
 
-        <section id="social-media" class="bg-gray-800 rounded-lg p-6 shadow-xl animate-fade-in">
-            <h2 class="text-2xl font-semibold mb-4 text-cyan-400">Social Media</h2>
-            <div class="flex justify-center space-x-6">
-                <a href="https://www.facebook.com/mommm93205" target="_blank" rel="noopener noreferrer" class="text-white hover:text-cyan-400 transition-colors hover-scale">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                </a>
-                <a href="https://discord.com/users/705851962851196962" target="_blank" rel="noopener noreferrer" class="text-white hover:text-cyan-400 transition-colors hover-scale">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                </a>
-                <a href="https://www.instagram.com/lahn_alhout/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-cyan-400 transition-colors hover-scale">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/mostafaelhout/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-cyan-400 transition-colors hover-scale">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                </a>
-                <a href="https://www.youtube.com/@elhoutGaming" target="_blank" rel="noopener noreferrer" class="text-white hover:text-cyan-400 transition-colors hover-scale">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
-                </a>
-            </div>
-        </section>
-    </main>
+    <section id="social-media" class="social-media">
+        <h2>Social Media</h2>
+        <ul>
+            <li><a href="https://www.facebook.com/mommm93205" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://discord.com/users/705851962851196962" target="_blank"><i class="fab fa-discord"></i></a></li>
+            <li><a href="https://www.instagram.com/lahn_alhout/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/mostafaelhout/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a href="https://kick.com/dr-wable" target="_blank"><i class="fab fa-kickstarter"></i></a></li>
+            <li><a href="https://www.youtube.com/@elhoutGaming" target="_blank"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+    </section>
 
-    <footer class="mt-12 bg-gray-800 text-center p-4">
+    <footer>
         <p>&copy; 2024 Mostafa Emad Salah Hamdy. All rights reserved.</p>
     </footer>
 
-    <button id="themeToggle" class="fixed bottom-4 right-4 p-2 rounded-full bg-gray-800 text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-    </button>
-
     <script>
-        // Calculate age
-        function calculateAge(birthdate) {
-            const today = new Date();
-            const birthDate = new Date(birthdate);
-            let age = today.getFullYear() - birthDate.getFullYear();
-            const m = today.getMonth() - birthDate.getMonth();
-            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-            return age;
-        }
-
-        document.getElementById('age').textContent = calculateAge('2005-03-09');
-
-        // Theme toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const htmlElement = document.documentElement;
-        let isDarkMode = true;
-
-        themeToggle.addEventListener('click', () => {
-            isDarkMode = !isDarkMode;
-            if (isDarkMode) {
-                htmlElement.classList.remove('light');
-                htmlElement.classList.add('dark');
-                themeToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
-            } else {
-                htmlElement.classList.remove('dark');
-                htmlElement.classList.add('light');
-                themeToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-            }
-        });
-
-        // Intersection Observer for fade-in animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100');
-                    entry.target.classList.remove('opacity-0');
+        document.addEventListener('DOMContentLoaded', () => {
+            function calculateAge(dateOfBirth) {
+                const today = new Date();
+                const birthDate = new Date(dateOfBirth);
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDifference = today.getMonth() - birthDate.getMonth();
+                if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
                 }
-            });
-        }, { threshold: 0.1 });
+                return age;
+            }
 
-        document.querySelectorAll('section').forEach(section => {
-            section.classList.add('opacity-0', 'transition-opacity', 'duration-500');
-            observer.observe(section);
+            const dateOfBirth = '2005-03-09';
+            document.getElementById('age').textContent = calculateAge(dateOfBirth);
+
+            const sections = document.querySelectorAll('section');
+            const nav = document.querySelector('nav');
+
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+
+                if (scrollPosition > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const viewportHeight = window.innerHeight;
+                    if (sectionTop < viewportHeight * 0.8) {
+                        section.classList.add('show');
+                    }
+                });
+            });
+
+            // إضافة تأثير النقر على روابط التنقل
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                });
+            });
         });
     </script>
 </body>
