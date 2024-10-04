@@ -1,0 +1,139 @@
+"use client"
+
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useTheme } from 'next-themes'
+import { Sun, Moon, Facebook, Instagram, Linkedin, Youtube, MessageCircle } from 'lucide-react'
+
+export default function Component() {
+  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [age, setAge] = useState(0)
+
+  useEffect(() => {
+    setMounted(true)
+    const birthDate = new Date('2005-03-09')
+    const today = new Date()
+    let age = today.getFullYear() - birthDate.getFullYear()
+    const m = today.getMonth() - birthDate.getMonth()
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--
+    }
+    setAge(age)
+  }, [])
+
+  if (!mounted) return null
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-opacity-70 bg-gray-800 backdrop-blur-md">
+        <ul className="flex justify-center space-x-6 p-4">
+          <li><a href="#info" className="hover:text-cyan-400 transition-colors">Info</a></li>
+          <li><a href="#certificates" className="hover:text-cyan-400 transition-colors">Certificates</a></li>
+          <li><a href="#education" className="hover:text-cyan-400 transition-colors">Education</a></li>
+          <li><a href="#social-media" className="hover:text-cyan-400 transition-colors">Social</a></li>
+        </ul>
+      </nav>
+
+      <header className="pt-20 pb-10 text-center relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-800 to-indigo-800 opacity-50"></div>
+          <div className="absolute inset-0 bg-[url('/placeholder.svg?height=400&width=800')] bg-cover bg-center mix-blend-overlay"></div>
+        </div>
+        <motion.div
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="relative z-10"
+        >
+          <img src="/placeholder.svg?height=150&width=150" alt="Profile" className="w-32 h-32 rounded-full border-4 border-cyan-400 mx-auto mb-4 shadow-lg shadow-cyan-400/50" />
+          <h1 className="text-4xl font-bold mb-2">Mostafa Emad Salah Hamdy</h1>
+          <p className="text-xl text-cyan-300">Passionate about Programming and Gaming</p>
+        </motion.div>
+      </header>
+
+      <main className="container mx-auto px-4 space-y-12">
+        <AnimatePresence>
+          <motion.section
+            id="info"
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-gray-800 rounded-lg p-6 shadow-xl"
+          >
+            <h2 className="text-2xl font-semibold mb-4 text-cyan-400">Personal Information</h2>
+            <p className="text-lg"><strong>Age:</strong> {age}</p>
+            <p className="text-lg"><strong>Email:</strong> <a href="mailto:mommm93205@gmail.com" className="text-cyan-300 hover:underline">mommm93205@gmail.com</a></p>
+          </motion.section>
+
+          <motion.section
+            id="certificates"
+            initial={{ x: 100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-gray-800 rounded-lg p-6 shadow-xl"
+          >
+            <h2 className="text-2xl font-semibold mb-4 text-cyan-400">Qualifications and Certificates</h2>
+            <ul className="list-disc list-inside space-y-2">
+              <li>Digital Marketing: Misr University for Science and Technology (MUST), 2024</li>
+              <li>ISO 45001/2018: Occupational Safety and Health Management System</li>
+              <li>Data Science: Completion Certificate from Moka Satar</li>
+              <li>Python 101: Completion Certificate from Moka Satar</li>
+              <li>Body Language & Business Etiquette: Almentor platform</li>
+              <li>Attendance Certificate at Third International Biotechnology Conference, Mast University</li>
+            </ul>
+          </motion.section>
+
+          <motion.section
+            id="education"
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-gray-800 rounded-lg p-6 shadow-xl"
+          >
+            <h2 className="text-2xl font-semibold mb-4 text-cyan-400">Education</h2>
+            <p className="text-lg">Faculty of Health Sciences - Health Administration & Informatics</p>
+          </motion.section>
+
+          <motion.section
+            id="social-media"
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-gray-800 rounded-lg p-6 shadow-xl"
+          >
+            <h2 className="text-2xl font-semibold mb-4 text-cyan-400">Social Media</h2>
+            <div className="flex justify-center space-x-6">
+              <a href="https://www.facebook.com/mommm93205" target="_blank" rel="noopener noreferrer" className="text-white hover:text-cyan-400 transition-colors">
+                <Facebook size={24} />
+              </a>
+              <a href="https://discord.com/users/705851962851196962" target="_blank" rel="noopener noreferrer" className="text-white hover:text-cyan-400 transition-colors">
+                <MessageCircle size={24} />
+              </a>
+              <a href="https://www.instagram.com/lahn_alhout/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-cyan-400 transition-colors">
+                <Instagram size={24} />
+              </a>
+              <a href="https://www.linkedin.com/in/mostafaelhout/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-cyan-400 transition-colors">
+                <Linkedin size={24} />
+              </a>
+              <a href="https://www.youtube.com/@elhoutGaming" target="_blank" rel="noopener noreferrer" className="text-white hover:text-cyan-400 transition-colors">
+                <Youtube size={24} />
+              </a>
+            </div>
+          </motion.section>
+        </AnimatePresence>
+      </main>
+
+      <footer className="mt-12 bg-gray-800 text-center p-4">
+        <p>&copy; 2024 Mostafa Emad Salah Hamdy. All rights reserved.</p>
+      </footer>
+
+      <button
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        className="fixed bottom-4 right-4 p-2 rounded-full bg-gray-800 text-white"
+      >
+        {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+      </button>
+    </div>
+  )
+}
